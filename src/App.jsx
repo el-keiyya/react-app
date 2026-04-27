@@ -1,5 +1,9 @@
 import "./App.css";
 
+function Greeting() {
+  return <h1>Hello, I am Haasan!</h1>;
+}
+
 function App() {
   const name = getName();
   const age = 29;
@@ -7,9 +11,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>
-          Hello World, I am {name} and I'm {age} years old
-        </h1>
+        <Greeting />
       </div>
     </>
   );
@@ -18,5 +20,7 @@ function App() {
 function getName() {
   return "Hassan";
 }
+
+//COMPONENT = Function that returns JSX
 
 export default App;
