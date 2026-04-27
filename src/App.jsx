@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 function Greeting({ name, age }) {
@@ -9,18 +10,23 @@ function Greeting({ name, age }) {
 }
 
 function App() {
-  const showGreeting = false;
+  const [showGreeting, setShowGreeting] = useState(false);
+
+  function toggleGreeting() {
+    // if (showGreeting) {
+    //   setShowGreeting(false);
+    // } else {
+    //   setShowGreeting(true);
+    // }
+
+    setShowGreeting(!showGreeting);
+  }
 
   return (
-    <>
-      <div>
-        {showGreeting ? (
-          <Greeting name={"Hassan"} age={29} />
-        ) : (
-          <button>Click me</button>
-        )}
-      </div>
-    </>
+    <div>
+      <button onClick={toggleGreeting}>Toggle Greeting</button>
+      {showGreeting && <Greeting name={"Hassan"} age={29} />}
+    </div>
   );
 }
 
