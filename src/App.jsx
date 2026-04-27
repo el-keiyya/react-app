@@ -9,17 +9,16 @@ function Greeting({ name, age }) {
 }
 
 function App() {
-  const name = "Hassan";
-  const age = 29;
+  const showGreeting = false;
 
   return (
     <>
       <div>
-        <Greeting name={"Hassan"} age={29} />
-        <Greeting name={"Pedro"} />
-        <Greeting name={"Jack"} />
-        <Greeting name={"Jessica"} />
-        <Greeting name={"Bane"} />
+        {showGreeting ? (
+          <Greeting name={"Hassan"} age={29} />
+        ) : (
+          <button>Click me</button>
+        )}
       </div>
     </>
   );
