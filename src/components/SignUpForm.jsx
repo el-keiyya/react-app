@@ -1,26 +1,25 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { register, handleSubmit } = useForm();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    alert("submitted with email: " + email + " and password: " + password);
+  function onSubmit(data) {
+    alert(`submitted with email: ${data.email} and password: ${data.password}`);
   }
 
   return (
     <div style={{ maxWidth: 400, margin: "2rem auto" }}>
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginBottom: "1rem" }}>
           <label>
             Email
             <input
               type="email"
               placeholder="you@example.com"
-              onChange={(e) => setEmail(e.target.value)}
+              {...register("email", { required: "Email is required" })}
             />
           </label>
         </div>
@@ -31,7 +30,17 @@ export default function SignUpForm() {
             <input
               type="password"
               placeholder="********"
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 4,
+                  message: "Password must be at least 4 chars",
+                },
+                maxLength: {
+                  value: 12,
+                  message: "Password must be at most 12 chars",
+                },
+              })}
             />
           </label>
         </div>
