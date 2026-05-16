@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SignUpForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   function onSubmit(data) {
     alert(`submitted with email: ${data.email} and password: ${data.password}`);
@@ -22,6 +22,10 @@ export default function SignUpForm() {
               {...register("email", { required: "Email is required" })}
             />
           </label>
+
+          {errors.email && (
+            <p style={{color: 'crimson'}}>{errors.email.message}</p>
+          )}
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
@@ -43,6 +47,10 @@ export default function SignUpForm() {
               })}
             />
           </label>
+
+          {errors.password && (
+            <p style={{color: 'crimson'}}>{errors.password.message}</p>
+          )}
         </div>
 
         <button type="submit">Create account</button>
