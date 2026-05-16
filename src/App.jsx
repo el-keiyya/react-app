@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 
 function Homepage() {
   return <h1>Home Page</h1>;
@@ -13,11 +13,16 @@ function AboutPage() {
 function App() {
   return (
     <div>
+      <nav style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+      </nav>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
+      <div>Footer</div>
     </div>
   );
 }
@@ -25,3 +30,4 @@ function App() {
 export default App;
 
 // Check SPA & MPA
+// Dynamic & Nested Routes
